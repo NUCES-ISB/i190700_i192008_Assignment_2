@@ -1,0 +1,4 @@
+Flask==2.2.3
+Flask-DotEnv==0.1.2
+requests==2.28.2
+scikit-learn==1.0.2
