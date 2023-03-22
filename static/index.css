@@ -21,9 +21,11 @@ p {
 .heading-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
-.container {
+
+.main-container {
   width: 80%;
   max-width: 600px;
   padding: 2rem;
@@ -31,6 +33,24 @@ p {
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   text-align: center;
+  border: solid 1px black;
+}
+
+.input-div {
+  display: flex;
+  align-items: center;
+  width: full;
+  margin-bottom: 1rem;
+
+}
+
+input {
+  height: 2.5rem;
+  flex: 1;
+  border-radius: 5px;
+  width: full;
+  margin-left: 3rem;
+  padding: 2px;
 }
 
 .form-button {
@@ -50,10 +70,10 @@ p {
 }
 
 button[type="submit"] {
-  background-color: #4caf50; /* Green */
+  background-color: #0062cc; /* Green */
   border: none;
   color: white;
-  padding: 10px 20px;
+  padding: 25px 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;

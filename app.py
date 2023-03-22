@@ -1,10 +1,9 @@
 from flask import Flask, jsonify, render_template, request
 from flask_dotenv import DotEnv
-from utils.weather.open_weather import get_max_and_min_temperature
-from utils.weather.weather_stack import get_precipitation_and_wind_speed
+from datetime import datetime
+from utils.weather.current_weather import currentWeather
+from utils.weather.today_weather import todayWeather
 from utils.model.model import weather_predictor
-import requests
-import threading
 
 app = Flask(__name__)
 env = DotEnv(app)
@@ -13,21 +12,19 @@ env.init_app(app)
 @app.route('/')
 def get_weather():
     try:
-        # Weatherstack API for Precepitation
-        # OpenWeather API for Min/Max temperature and wind speed
-        weatherstack_api_key = app.config['WEATHERSTACK_API_KEY']
-        openweather_api_key = app.config['OPENWEATHER_API_KEY']
+        time = datetime.now()
+        api_key = app.config['WEATHER_API']
 
-        lat = 33.738045
-        lon = 73.084488
         location = "Islamabad"
 
-        precipitation, windSpeed = get_precipitation_and_wind_speed(weatherstack_api_key, location)
-        maxTemp, minTemp = get_max_and_min_temperature(openweather_api_key, lat, lon) 
+        currentWeatherData = currentWeather(api_key, location)
+        todaysWeatherData = todayWeather(api_key, location)
 
-        # Remove this line later
-        # input=[[1.140175,8.9,2.8,2.469818]]
-        # predValue = weather_predictor.predict(input)
+        precipitation = currentWeatherData["current"]["precip_in"]
+        windSpeed = currentWeatherData["current"]["wind_kph"]
+        maxTemp = todaysWeatherData["forecast"]["forecastday"][0]["day"]["maxtemp_c"]
+        minTemp = todaysWeatherData["forecast"]["forecastday"][0]["day"]["mintemp_c"]
+
         predValue = weather_predictor.predict([[precipitation, maxTemp, minTemp, windSpeed]])
 
         prediction = ""
@@ -43,10 +40,7 @@ def get_weather():
             prediction = "Sun"
 
 
-        # 
-
-        # return jsonify({ "Location":location, "Precipitation": precipitation, "WindSpeed": windSpeed, "MaxTemp": maxTemp, "MinTemp": minTemp})
-        return render_template('index.html', precipitation=precipitation, wind_speed=windSpeed, max_temp=maxTemp, min_temp=minTemp, prediction=prediction)
+        return render_template('index.html', precipitation=precipitation, wind_speed=windSpeed, max_temp=maxTemp, min_temp=minTemp, prediction=prediction, time=time)
 
     except Exception as e:
         return jsonify({'error':e})

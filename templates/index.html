@@ -2,21 +2,28 @@
 <html>
   <head>
     <title>Weather Prediction</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='index.css') }}"
+    />
   </head>
   <body>
-    <div class="heading-container">
-      <h1>Weather Prediction</h1>
-      <a class="form-button" href="/form">Enter Data</a>
+    <div class="main-container">
+      <div class="heading-container">
+        <h1>Weather Prediction</h1>
+        <a class="form-button" href="/form">Enter Data</a>
+      </div>
+
+      <h3>Last Updated: {{ time }}</h3>
+
+      <p>Precipitation: {{ precipitation }}</p>
+      <p>Wind Speed: {{ wind_speed }}</p>
+      <p>Max Temperature: {{ max_temp }}</p>
+      <p>Min Temperature: {{ min_temp }}</p>
+      {% if prediction %}
+      <h2>The predicted weather is: {{ prediction }}</h2>
+      {% endif %}
     </div>
-    
-    
-    <p>Precipitation: {{ precipitation }}</p>
-    <p>Wind Speed: {{ wind_speed }}</p>
-    <p>Max Temperature: {{ max_temp }}</p>
-    <p>Min Temperature: {{ min_temp }}</p>
-    {% if prediction %}
-      <p>The predicted weather is: {{ prediction }}</p>
-    {% endif %}
   </body>
 </html>

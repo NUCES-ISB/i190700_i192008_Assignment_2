@@ -2,28 +2,66 @@
 <html>
   <head>
     <title>Weather Prediction</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='index.css') }}"
+    />
   </head>
   <body>
-    <div class="heading-container">
+    <div class="main-container">
+      <div class="heading-container">
         <h1>Weather Prediction Form</h1>
-        <a class="form-button" href="/">Back to original</a>
-    </div>
-    
-    <form method="post">
-      <label for="precipitation"><p>Precipitation:</p></label>
-      <input type="text" name="precipitation" id="precipitation" required><br><br>
-      <label for="wind_speed"><p>Wind Speed:</p></label>
-      <input type="text" name="wind_speed" id="wind_speed" required><br><br>
-      <label for="max_temp"><p>Max Temperature:</p></label>
-      <input type="text" name="max_temp" id="max_temp" required><br><br>
-      <label for="min_temp"><p>Min Temperature:</p></label>
-      <input type="text" name="min_temp" id="min_temp" required><br><br>
-      <button type="submit">Get Prediction</button>
-    </form>
-    <br>
-    {% if prediction %}
+        <a class="form-button" href="/">Back</a>
+      </div>
+
+      <form method="post">
+        <div class="input-div">
+          <label for="precipitation"><p>Precipitation:</p></label>
+          <input
+            type="text"
+            name="precipitation"
+            id="precipitation"
+            required
+          />
+        </div>
+
+        <div class="input-div">
+          <label for="wind_speed"><p>Wind Speed:</p></label>
+          <input
+            type="text"
+            name="wind_speed"
+            id="wind_speed"
+            required
+          />
+        </div>
+
+        <div class="input-div">
+          <label for="max_temp"><p>Max Temperature:</p></label>
+          <input
+            type="text"
+            name="max_temp"
+            id="max_temp"
+            required
+          />
+        </div>
+
+        <div class="input-div">
+          <label for="min_temp"><p>Min Temperature:</p></label>
+          <input
+            type="text"
+            name="min_temp"
+            id="min_temp"
+            required
+          />
+        </div>
+
+        <button type="submit">Get Prediction</button>
+      </form>
+      <br />
+      {% if prediction %}
       <h2>The predicted weather is: {{ prediction }}</h2>
-    {% endif %}
+      {% endif %}
+    </div>
   </body>
 </html>
