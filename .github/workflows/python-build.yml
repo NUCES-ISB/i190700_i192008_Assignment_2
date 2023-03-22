@@ -3,7 +3,7 @@ name: Python Setup Workflow
 on:
   push:
     branches:
-      - hamza_branch
+      - hamza-branch
 
 jobs:
   build-and-run:
