@@ -11,4 +11,4 @@ To install and run:
     "pip install -r requirements.txt"
 
 4) Run the application using the following command:
-    "flask run"
+    "flask run".
