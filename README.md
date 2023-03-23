@@ -8,11 +8,6 @@ To install and run:
        
 3) Inside the repo folder, run:
     "pip install -r requirements.txt
-    
-    
-    
-    
-    
 
 4) Run the application using the following command:
     "flask run"
