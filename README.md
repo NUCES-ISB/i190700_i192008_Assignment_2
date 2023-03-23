@@ -6,7 +6,6 @@ To install and run:
 2) Run the venv using the following command:
     "ENV_NAME/Scripts/activate"
        
-    
 3) Inside the repo folder, run:
     "pip install -r requirements.txt
     
