@@ -11,6 +11,8 @@ To install and run:
     
     
     
+    
+    
 
 4) Run the application using the following command:
     "flask run"
